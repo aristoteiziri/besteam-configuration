@@ -1,0 +1,48 @@
+server:
+    port: 0 
+    forward-headers-strategy: framework 
+spring:
+  application.name: configuration
+  docker.compose:
+      enabled: true
+      file: docker-compose.yml
+  profiles.active: git    
+  main.allow-bean-definition-overriding: true
+  cloud:
+    config:
+       server:    
+         git:
+           uri: '{cipher}AQBqjL5ebEBULMfCNV+LTEGxq97S8rObmpcdnRMhjAhABJOCunedZ8AgrPJvcGPiia6rjUL9VrHDN0W0CM0JgKckWPBHbRNw15B22zuLTXGDQFQNZnclN2OE+cqBYRmaRnE1eizTQNJwMjHb1DNzAq3zU/kz3wKCGy5uPGKqh8GN3wH5XdWkRvPETinwcNC+tIsHuDGjaV3+sdTjJKciu78UsJq7ALTd+9QN78Mro1yZolABCEUN00ub9LBrDPim6Ec2TEOGZV+ncUqIfqxKowKc10DBtEtuMIC9eQdjidgsYc682G4U5/hoIElgSuMUyQ3P/VlCkBSlnSMnuG+3GXqj4h6cC1DUZKNMyjmObyTN/KiDBg3iqFiAFQIAO2jVUVTXGMX3WSlNiC/wAWi/kEXC7QBTI55Pg9Ae1JKXuDiGDvembbPFmmABlsakd1sikkk=' 
+           username: '{cipher}AQAU2SQ0sPf9vns96sHq6Z3fumlyt/2dP5XuYRDeTXvlueL3hWawuqd20Rp9HgzZ3w9LmU+/esVueqO8P7JBQ0EefOHAInG3yAZu46h7dVAEMx4313JJ2dKBbzdcA4L44t40+9vT4EZBLE7fhotwFN05+CnPNdkHiPR6WhCbKYVhHJzZhAtqOqQGedshgKFsKp6v8hA15vkuSM2uOxUvnjexrB5YzEnIyeDa1AuZCHVJP99m/ft/ntt9AeHSNziAgjD7/qhPKyOA5jXwqQgeGGEqeD2h4ZUJjthUlRH6aRkyCKHC+p4aVpgC0EYLkjQ4eh7gdBCTQNmqDfFl25MZ2VifLXlR6zMZr8x/yW+snYDRqsTVG/naoqPMjfdvE+qbpOU='  
+           password: '{cipher}AQBlJEp3kQ29AmpzVVmxX+FQwTvIkrY7qR92lE9qGYhXd/lKB8Z3BGWKRliWNBMZXZwMaJ6X3Ng00eDw0XONSpkeesn/wnbb984rox/HVyIzcJtfFhP2Ru3Xm1FkxBVfBz8gMdsNJkZCoTkP88bG+BM9PiufNMlit2iDDF2AsvTWKDoaWs2QyL1ybLgssU+7Q21rsmYO3KelLo61WgYXAkS5pibuhjJPPQqXT/ZYHHRDemJ6iJmJph0geJ808wfJCK85Cc6ODMHxyAiooPz6mDieMK9Xw/Q9O/yNn4wAOJ+Tn3PwiBARQ4Go9pTb0/hk82It14DIZZHLXInC6tSY03KJwJy40nOUizd8VKuaESa0K0Yk3Ii9oquJLwfQmpYhUy1oqG3zxx4Ek3St3zFie5GjoqEPEsc0gT70HVp+XuD3pg==' 
+           default-label: '{cipher}AQAO1ks0d2bvxZRaMcsu+AWIf12GQ7/qgpSFQEGhndzIV8da4mLsofaixK4n53674hixZLa5K0CoeTr27OMfTW9S4uBnJbwv6npYjdScBqDf5OismhjLGO4Klo88lPXDZ9qRtfAtY6mh/kY8EsZneBERrNlfkkYLF/eMlS7vPJzIO+IComwKW6DmTv12xnBL+e23BDovWB1ko8c6NHdJETMkNlJGfudvwh4UWSj5vutZAbwl6LLj1Obac+73ZheO2axdz3MeChjJI5N2qTQ4RdDzKU7NOobTISUMQEDj6ox2ocGcUj72U7+kyYjvqAO2bmnFwv7i6JvwiJowX+88iLkCxeIx+SIvaayjQ437HUg9LYN+f89oTQQbGGY3hBp58C8=' 
+           clone-on-start: true
+           force-pull: true
+           skipSslValidation: true
+           timeout: 10
+    consul:
+       config.enabled: false
+       host: consul-server-leader      
+       port: 8500
+       discovery:
+         prefer-ip-address: true
+         enabled: true    
+         instance-id: ${spring.application.name}:${random.int[1,99]}
+         register-health-check: false
+    security.user:
+          name: '{cipher}AQBgNCzHCIRO5UTjYr2bQNBfcQtccH0u0on4agGW6qAwCZTk6sJryuHp2RB1RWcOAfr8Cu3KP1yCk98YatpW1ZMTrrMseVqjSlHGQjE7F8m0exgEPBz4Wijryj4oeQiCJOE7pVgsKrfYZLUz5bTMZaZ3hsvXrqBmmbzdM59lOLRYy2XsgrLo5wcC5Ib6I5wkdDVs7Aw2MJiKZUsLTnF6YqKu5fOEl/KzB0FYPdDbA1HpYDLM9MceRhT/92/oX/ptxv4CPfby1U8CUUyY5t2kWrNuTHl08Cjp4KjTHombQpAk0X8K0a9SWmm5rDonErSYwzRPhRnuoTrtTUG6zmDCxJs8vgujz/iTJZByjFb42/zvCE/csOqD02J4OQFjVN3Gmmk=' 
+          password: '{cipher}AQAfY+n8vbzU2B/g2CeJiAXDeP2j/nOaZk1ZJdfoeXNaujx9wbbks7VgYaXMDTf8INzj8zkXXaN/6289NBI2QGUZttrIK/NDHSJTFsDdgi2zoxiNJEdJDQj9BWi1Gm0NJg4rDRWGCwlcpiR3pklDM6JUk3Wh7mVxzYqX750OJ0Ga/TxsADgUaCBf6JLAhB0BEMFuU2dspelZK/QhN8A4CsrnqLgojn7jf/I0QmkLi/MpAGxMZ9WDSru0XxzBswyPVXTDctjc0rHUkGdJxtKrRJQw34CVskfxHFyU1aMwH6+gxkMTFm+15BTtcDQX+8IURCoyM0d2+9639BBZhkHDhmxaoxMTHmN0MECrv2JkuRZ0gnmctrqggHabqOuHEjuyjVY='  
+#With the Java keytool command, we generate a new keystore including a RSA key-pair to be stored under src/main/resources
+#keytool -genkeypair -alias config-server-key -keyalg RSA -dname "cn=Config-Serv, ou=IT, o=Blacksea Technology SARL, L=Dubai, S=UAE, c=AE" -keystore config-server.jks
+#Then migrating to the industry standard format PKCS12 with the following command
+#keytool -importkeystore -srckeystore config-server.jks -destkeystore config-server.jks -deststoretype pkcs12
+encrypt.keyStore:
+    location: ${encrypt_keystore_location} 
+    password: ${encrypt_keystore_pwd}  
+    alias: ${encrypt_keystore_alias} 
+management.endpoints.web.exposure.include: "*"
+logging:level.org.springframework.cloud.consul: DEBUG
+#Swagger-UI documentation
+springdoc:
+    api-docs.path: /configuration-docs
+    swagger-ui.path: /configuration-doc.html    

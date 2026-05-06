@@ -1,0 +1,57 @@
+name: Docker Build and Deploy configuration APP
+
+on: [push]
+env:
+  REPO_NAME: SmartCustoms-Configuration-Backend
+  APP: configuration
+  VERSION: v1.0.0
+  BRANCH: update
+  SERVICES: configuration
+jobs:
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GH_PAT }}
+        
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: ghcr.io/${{ github.actor }}/${{ env.APP }}:${{ github.sha }}
+  update-container:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          host: ${{ secrets.HOST }}
+          script: |
+              set +x
+              curl -H "Authorization: token ${{ secrets.GH_PAT }}" -o /tmp/docker-compose.yml https://raw.githubusercontent.com/blacksea-technology/${{ env.REPO_NAME }}/${{ env.BRANCH }}/docker-compose.yml
+              cd /tmp/
+              docker compose stop ${{ env.SERVICES }}
+              docker compose rm ${{ env.SERVICES }}
+              sleep 5s
+              echo "Container is down now"
+              docker login --username ${{ github.actor }} --password ${{ secrets.GH_PAT }} ghcr.io
+              docker pull ghcr.io/${{ github.actor }}/${{ env.APP }}:${{ github.sha }}
+              docker tag ghcr.io/${{ github.actor }}/${{ env.APP }}:${{ github.sha }} ${{ env.APP }}:${{ env.VERSION }}
+              docker compose --compatibility up -d ${{ env.SERVICES }}
+              sleep 5s
+              echo "container is running now"
+              docker images --format '{{.Repository}}:{{.Tag}}' | grep ghcr.io/${{ github.actor }} | xargs -I {} docker rmi {}
+              echo "the github images are deleted"
+              rm -rf /tmp/docker-compose.yml
