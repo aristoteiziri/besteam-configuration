@@ -22,7 +22,7 @@ spring:
            timeout: 10
     consul:
        config.enabled: false
-       host: consul-server-leader      
+       host: besteam-consul-server-leader      
        port: 8500
        discovery:
          prefer-ip-address: true

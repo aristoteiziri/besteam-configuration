@@ -1,15 +1,15 @@
 services:
-  configuration:
+  besteam-configuration:
     build: .
-    image: configuration:v1.0.0
+    image: besteam-configuration:v1.0.0
     networks:
       network1:
-    environment:   
+    environment:
       encrypt_keystore_location: classpath:/config-server.jks #${encrypt_keystore_location} 
       encrypt_keystore_pwd: Dev321@SmartCustoms #${encrypt_keystore_pwd} 
       encrypt_keystore_alias: config-server-key #${encrypt_keystore_alias}
     deploy:
-      replicas: 2  
+      replicas: 2
 networks:
   network1:
     name: blackseatechnology-network
