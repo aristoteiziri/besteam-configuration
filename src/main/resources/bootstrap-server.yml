@@ -29,9 +29,10 @@ spring:
          enabled: true    
          instance-id: ${spring.application.name}:${random.int[1,99]}
          register-health-check: false
-    security.user:
-          name: '{cipher}AQBgNCzHCIRO5UTjYr2bQNBfcQtccH0u0on4agGW6qAwCZTk6sJryuHp2RB1RWcOAfr8Cu3KP1yCk98YatpW1ZMTrrMseVqjSlHGQjE7F8m0exgEPBz4Wijryj4oeQiCJOE7pVgsKrfYZLUz5bTMZaZ3hsvXrqBmmbzdM59lOLRYy2XsgrLo5wcC5Ib6I5wkdDVs7Aw2MJiKZUsLTnF6YqKu5fOEl/KzB0FYPdDbA1HpYDLM9MceRhT/92/oX/ptxv4CPfby1U8CUUyY5t2kWrNuTHl08Cjp4KjTHombQpAk0X8K0a9SWmm5rDonErSYwzRPhRnuoTrtTUG6zmDCxJs8vgujz/iTJZByjFb42/zvCE/csOqD02J4OQFjVN3Gmmk=' 
-          password: '{cipher}AQAfY+n8vbzU2B/g2CeJiAXDeP2j/nOaZk1ZJdfoeXNaujx9wbbks7VgYaXMDTf8INzj8zkXXaN/6289NBI2QGUZttrIK/NDHSJTFsDdgi2zoxiNJEdJDQj9BWi1Gm0NJg4rDRWGCwlcpiR3pklDM6JUk3Wh7mVxzYqX750OJ0Ga/TxsADgUaCBf6JLAhB0BEMFuU2dspelZK/QhN8A4CsrnqLgojn7jf/I0QmkLi/MpAGxMZ9WDSru0XxzBswyPVXTDctjc0rHUkGdJxtKrRJQw34CVskfxHFyU1aMwH6+gxkMTFm+15BTtcDQX+8IURCoyM0d2+9639BBZhkHDhmxaoxMTHmN0MECrv2JkuRZ0gnmctrqggHabqOuHEjuyjVY='  
+  security:
+    user:
+      name: '{cipher}AQBgNCzHCIRO5UTjYr2bQNBfcQtccH0u0on4agGW6qAwCZTk6sJryuHp2RB1RWcOAfr8Cu3KP1yCk98YatpW1ZMTrrMseVqjSlHGQjE7F8m0exgEPBz4Wijryj4oeQiCJOE7pVgsKrfYZLUz5bTMZaZ3hsvXrqBmmbzdM59lOLRYy2XsgrLo5wcC5Ib6I5wkdDVs7Aw2MJiKZUsLTnF6YqKu5fOEl/KzB0FYPdDbA1HpYDLM9MceRhT/92/oX/ptxv4CPfby1U8CUUyY5t2kWrNuTHl08Cjp4KjTHombQpAk0X8K0a9SWmm5rDonErSYwzRPhRnuoTrtTUG6zmDCxJs8vgujz/iTJZByjFb42/zvCE/csOqD02J4OQFjVN3Gmmk='
+      password: '{cipher}AQAfY+n8vbzU2B/g2CeJiAXDeP2j/nOaZk1ZJdfoeXNaujx9wbbks7VgYaXMDTf8INzj8zkXXaN/6289NBI2QGUZttrIK/NDHSJTFsDdgi2zoxiNJEdJDQj9BWi1Gm0NJg4rDRWGCwlcpiR3pklDM6JUk3Wh7mVxzYqX750OJ0Ga/TxsADgUaCBf6JLAhB0BEMFuU2dspelZK/QhN8A4CsrnqLgojn7jf/I0QmkLi/MpAGxMZ9WDSru0XxzBswyPVXTDctjc0rHUkGdJxtKrRJQw34CVskfxHFyU1aMwH6+gxkMTFm+15BTtcDQX+8IURCoyM0d2+9639BBZhkHDhmxaoxMTHmN0MECrv2JkuRZ0gnmctrqggHabqOuHEjuyjVY='
 #With the Java keytool command, we generate a new keystore including a RSA key-pair to be stored under src/main/resources
 #keytool -genkeypair -alias config-server-key -keyalg RSA -dname "cn=Config-Serv, ou=IT, o=Blacksea Technology SARL, L=Dubai, S=UAE, c=AE" -keystore config-server.jks
 #Then migrating to the industry standard format PKCS12 with the following command

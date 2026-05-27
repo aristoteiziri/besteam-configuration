@@ -5,9 +5,13 @@ services:
     networks:
       network1:
     environment:
-      encrypt_keystore_location: classpath:/config-server.jks #${encrypt_keystore_location} 
-      encrypt_keystore_pwd: Dev321@SmartCustoms #${encrypt_keystore_pwd} 
+      encrypt_keystore_location: classpath:/config-server.jks #${encrypt_keystore_location}
+      encrypt_keystore_pwd: Dev321@SmartCustoms #${encrypt_keystore_pwd}
       encrypt_keystore_alias: config-server-key #${encrypt_keystore_alias}
+      SPRING_PROFILES_ACTIVE: native
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:///app/config-repo
+    volumes:
+      - ../besteam-config-repo:/app/config-repo
     deploy:
       replicas: 2
 networks:
